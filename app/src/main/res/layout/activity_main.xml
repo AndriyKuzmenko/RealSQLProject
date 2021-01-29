@@ -140,13 +140,23 @@
                     android:hint="Mother's phone number"
                     android:inputType="textPersonName"
                     android:textSize="25sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10px" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Save" />
             </LinearLayout>
+
         </ScrollView>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="0px"
-            android:layout_weight="4" />
+            android:layout_weight="30" />
 
     </LinearLayout>
 
