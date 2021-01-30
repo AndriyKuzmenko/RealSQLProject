@@ -50,10 +50,8 @@ public class MainActivity extends AppCompatActivity
 
         db = hlp.getWritableDatabase();
 
-        db.insert(Users.TABLE_USERS, null, cv);
+        db.insertOrThrow(Users.TABLE_USERS, null, cv);
 
         db.close();
-
-        father.setText(father.getText().toString());
     }
 }
