@@ -50,6 +50,7 @@
                 android:orientation="vertical">
 
                 <EditText
+                    android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="25"
@@ -62,6 +63,7 @@
                     android:layout_height="10px" />
 
                 <EditText
+                    android:id="@+id/address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="25"
@@ -74,11 +76,12 @@
                     android:layout_height="10px" />
 
                 <EditText
+                    android:id="@+id/phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="25"
                     android:hint="Phone number"
-                    android:inputType="textPersonName"
+                    android:inputType="phone"
                     android:textSize="25sp" />
 
                 <Space
@@ -86,11 +89,12 @@
                     android:layout_height="10px" />
 
                 <EditText
+                    android:id="@+id/homePhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="25"
                     android:hint="Home phone"
-                    android:inputType="textPersonName"
+                    android:inputType="phone"
                     android:textSize="25sp" />
 
                 <Space
@@ -98,6 +102,7 @@
                     android:layout_height="10px" />
 
                 <EditText
+                    android:id="@+id/father"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="25"
@@ -110,11 +115,12 @@
                     android:layout_height="10px" />
 
                 <EditText
+                    android:id="@+id/fatherPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="25"
                     android:hint="Father's phone number"
-                    android:inputType="textPersonName"
+                    android:inputType="phone"
                     android:textSize="25sp" />
 
                 <Space
@@ -122,6 +128,7 @@
                     android:layout_height="10px" />
 
                 <EditText
+                    android:id="@+id/mother"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="25"
@@ -134,11 +141,12 @@
                     android:layout_height="10px" />
 
                 <EditText
+                    android:id="@+id/motherPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="25"
                     android:hint="Mother's phone number"
-                    android:inputType="textPersonName"
+                    android:inputType="phone"
                     android:textSize="25sp" />
 
                 <Space
@@ -148,6 +156,7 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="save"
                     android:text="Save" />
             </LinearLayout>
 
@@ -156,7 +165,7 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="0px"
-            android:layout_weight="30" />
+            android:layout_weight="15" />
 
     </LinearLayout>
 
