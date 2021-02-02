@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class HelperDB extends SQLiteOpenHelper
 {
     private static final String DATABASE_NAME="dbexam.db";
-    private static final int DATABASE_VERSION=4;
+    private static final int DATABASE_VERSION=7;
     String strCreate, strDelete;
 
     public HelperDB(Context context)
@@ -28,9 +28,18 @@ public class HelperDB extends SQLiteOpenHelper
         strCreate+=" "+Users.FATHER+" TEXT,";
         strCreate+=" "+Users.FATHER_PHONE+" INTEGER,";
         strCreate+=" "+Users.MOTHER+" TEXT,";
-        strCreate+=" "+Users.MOTHER_PHONE+" TEXT";
+        strCreate+=" "+Users.MOTHER_PHONE+" TEXT,";
+        strCreate+=" "+Users.ACTIVE+" INTEGER";
         strCreate+=");";
         db.execSQL(strCreate);
+
+        strCreate="CREATE TABLE "+Grades.TABLE_GRADES;
+        strCreate+=" ("+Grades.KEY_ID+" INTEGER PRIMARY KEY,";
+        strCreate+=" "+Grades.SUBJECT+" TEXT,";
+        strCreate+=" "+Grades.GRADE+" INTEGER";
+        strCreate+=");";
+        db.execSQL(strCreate);
+
     }
 
     @Override

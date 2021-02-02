@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity
         cv.put(Users.FATHER_PHONE, Integer.parseInt(fatherPhone.getText().toString()));
         cv.put(Users.MOTHER, mother.getText().toString());
         cv.put(Users.MOTHER_PHONE, Integer.parseInt(motherPhone.getText().toString()));
+        cv.put(Users.ACTIVE, 1);
 
         db = hlp.getWritableDatabase();
 
