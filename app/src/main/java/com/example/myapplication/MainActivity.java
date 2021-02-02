@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
@@ -81,6 +82,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
+        if(item.getItemId()==R.id.deleteStudents)
+        {
+            Intent i=new Intent(this,DeleteStudents.class);
+            startActivity(i);
+        }
+
         return true;
     }
 }
