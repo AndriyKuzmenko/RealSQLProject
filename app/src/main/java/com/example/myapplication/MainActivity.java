@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
@@ -54,5 +56,31 @@ public class MainActivity extends AppCompatActivity
         db.insert(Users.TABLE_USERS, null, cv);
 
         db.close();
+    }
+
+    /**
+     * @param menu  - the menu
+     * @return      - shows the main menu
+     */
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.main, menu);
+
+        return true;
+    }
+
+    /**
+     *
+     * @param item - the item that was selected
+     * @return     If the user pressed on the credits option, this method
+     *             starts CreditsActivity
+     */
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        return true;
     }
 }
