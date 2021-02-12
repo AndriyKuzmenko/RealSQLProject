@@ -23,6 +23,7 @@
             android:layout_weight="2" />
 
         <ListView
+            android:id="@+id/studentsList"
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="12" />
@@ -57,7 +58,7 @@
             android:gravity="center"
             android:text="Press on the user you want to delete."
             android:textColor="#FF0000"
-            android:textSize="45dp"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <Space
