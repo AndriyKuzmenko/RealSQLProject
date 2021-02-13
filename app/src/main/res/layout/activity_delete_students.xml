@@ -32,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="2" />
+
     </LinearLayout>
 
     <Space
@@ -56,10 +57,9 @@
             android:layout_weight="12"
             android:fontFamily="serif"
             android:gravity="center"
-            android:text="Press on the user you want to delete."
-            android:textColor="#FF0000"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            android:text="Select the student that you want to delete"
+            android:textColor="#040829"
+            android:textSize="20sp" />
 
         <Space
             android:layout_width="match_parent"
