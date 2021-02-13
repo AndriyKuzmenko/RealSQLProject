@@ -2,9 +2,12 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -30,7 +33,6 @@ public class DeleteStudents extends AppCompatActivity
         studentsList=(ListView)findViewById(R.id.studentsList);
 
         read();
-
     }
 
     public void read()
@@ -57,4 +59,38 @@ public class DeleteStudents extends AppCompatActivity
         ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, tbl);
         studentsList.setAdapter(adp);
     }
+
+
+    /**
+     * @param menu  - the menu
+     * @return      - shows the main menu
+     */
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.main, menu);
+
+        return true;
+    }
+
+    /**
+     *
+     * @param item - the item that was selected
+     * @return     - Starts the activity that the user selected.
+     */
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        if(item.getItemId()==R.id.menuMain)
+        {
+            Intent i=new Intent(this,MainActivity.class);
+            startActivity(i);
+        }
+
+        return true;
+    }
+}
+
 }

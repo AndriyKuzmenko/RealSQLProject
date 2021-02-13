@@ -75,8 +75,7 @@ public class MainActivity extends AppCompatActivity
     /**
      *
      * @param item - the item that was selected
-     * @return     If the user pressed on the credits option, this method
-     *             starts CreditsActivity
+     * @return     - Starts the activity that the user selected
      */
 
     @Override
