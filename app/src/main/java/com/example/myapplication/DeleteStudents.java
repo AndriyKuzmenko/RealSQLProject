@@ -24,6 +24,7 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
     SQLiteDatabase db;
     Cursor crsr;
     ArrayList<String> tbl = new ArrayList<>();
+    ArrayList<String> nameTBL=new ArrayList<>();
     ListView studentsList;
     AlertDialog.Builder adb;
 
@@ -54,26 +55,39 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
 
     public void read()
     {
-        crsr = db.query(Users.TABLE_USERS, null, null, null, null, null, null);
-        int idCol = crsr.getColumnIndex(Users.KEY_ID);
-        int nameCol = crsr.getColumnIndex(Users.NAME);
-        int activeCol = crsr.getColumnIndex(Users.ACTIVE);
+        crsr=db.query(Users.TABLE_USERS, null, null, null, null, null, null);
+        int idCol=crsr.getColumnIndex(Users.KEY_ID);
+        int nameCol=crsr.getColumnIndex(Users.NAME);
+        int addressCol=crsr.getColumnIndex(Users.ADDRESS);
+        int phoneCol=crsr.getColumnIndex(Users.PHONE);
+        int homeCol=crsr.getColumnIndex(Users.HOME_PHONE);
+        int fatherCol=crsr.getColumnIndex(Users.FATHER);
+        int fatherPhoneCol=crsr.getColumnIndex(Users.FATHER_PHONE);
+        int motherCol=crsr.getColumnIndex(Users.MOTHER);
+        int motherPhoneCol=crsr.getColumnIndex(Users.MOTHER_PHONE);
 
         crsr.moveToFirst();
         while (!crsr.isAfterLast())
         {
-            int key = crsr.getInt(idCol);
+            int key=crsr.getInt(idCol);
             String name = crsr.getString(nameCol);
-            boolean active = crsr.getInt(activeCol)>0;
-            if (!active) continue;
-            String tmp=name;
+            String address=crsr.getString(addressCol);
+            int phone=crsr.getInt(phoneCol);
+            int home=crsr.getInt(homeCol);
+            String father=crsr.getString(fatherCol);
+            int fatherPhone=crsr.getInt(fatherPhoneCol);
+            String mother=crsr.getString(motherCol);
+            int motherPhone=crsr.getInt(motherPhoneCol);
+
+            String tmp=key+",   "+name+", "+address+",   "+phone+",  "+home+",   "+father+",   "+fatherPhone+",   "+mother+",   "+motherPhone;
             tbl.add(tmp);
+            nameTBL.add(name);
             crsr.moveToNext();
         }
         crsr.close();
         db.close();
 
-        ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, tbl);
+        ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, nameTBL);
         studentsList.setAdapter(adp);
     }
 
@@ -112,32 +126,6 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
-        adb=new AlertDialog.Builder(this);
-        adb.setTitle("Warning");
-        adb.setMessage("Are you sure you want to delete "+parent.getItemAtPosition(position)+"?");
 
-        adb.setNegativeButton("No", new DialogInterface.OnClickListener()
-        {
-                @Override
-                public void onClick(DialogInterface dialog, int which)
-                {
-
-                }
-            }
-        );
-
-        adb.setPositiveButton("Yes", new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
-                db = hlp.getWritableDatabase();
-                db.delete(Users.TABLE_USERS, "=?", new String[]{Integer.toString(position + 1)});
-                db.close();
-            }
-        });
-
-        AlertDialog ad=adb.create();
-        ad.show();
     }
 }

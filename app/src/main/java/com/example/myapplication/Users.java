@@ -12,5 +12,4 @@ public class Users
     public static final String FATHER_PHONE="Father_phone";
     public static final String MOTHER="Mother_name";
     public static final String MOTHER_PHONE="Mother_phone";
-    public static final String ACTIVE="Active";
 }
