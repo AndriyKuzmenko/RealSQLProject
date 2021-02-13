@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -126,14 +127,15 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
         );
 
         adb.setPositiveButton("Yes", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
             {
-                @Override
-                public void onClick(DialogInterface dialog, int which)
-                {
-
-                }
+                db = hlp.getWritableDatabase();
+                db.delete(Users.TABLE_USERS, "=?", new String[]{Integer.toString(position + 1)});
+                db.close();
             }
-        );
+        });
 
         AlertDialog ad=adb.create();
         ad.show();
