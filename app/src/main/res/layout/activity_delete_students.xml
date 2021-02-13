@@ -55,12 +55,18 @@
             android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="0px"
-            android:layout_weight="12"
+            android:layout_weight="11"
             android:fontFamily="serif"
             android:gravity="center"
-            android:text="Select the student that you want to delete"
+            android:hint="Select the student that you want to delete"
             android:textColor="#040829"
             android:textSize="20sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="Delete" />
 
         <Space
             android:layout_width="match_parent"

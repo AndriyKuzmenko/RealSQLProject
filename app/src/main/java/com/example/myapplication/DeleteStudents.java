@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,8 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
     ArrayList<String> nameTBL=new ArrayList<>();
     ListView studentsList;
     AlertDialog.Builder adb;
+    int position;
+    TextView text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,6 +46,8 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
 
         studentsList.setOnItemClickListener(this);
         studentsList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        position=-1;
+        text=(TextView)findViewById(R.id.text);
     }
 
     @Override
@@ -81,7 +86,7 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
 
             String tmp=key+",   "+name+", "+address+",   "+phone+",  "+home+",   "+father+",   "+fatherPhone+",   "+mother+",   "+motherPhone;
             tbl.add(tmp);
-            nameTBL.add(name);
+            nameTBL.add(key+". "+name);
             crsr.moveToNext();
         }
         crsr.close();
@@ -126,6 +131,15 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
+        this.position=position;
 
+        String temp=(String)parent.getItemAtPosition(position);
+        for (int i=0; i<tbl.size(); i++)
+        {
+            if(!temp.split(",   ")[0].equals(tbl.get(i).split(",   ")[0]))
+            {
+                continue;
+            }
+        }
     }
 }
