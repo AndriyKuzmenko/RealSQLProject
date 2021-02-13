@@ -38,6 +38,14 @@ public class MainActivity extends AppCompatActivity
         motherPhone=(EditText)findViewById(R.id.motherPhone);
     }
 
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+
+        finish();
+    }
+
     public void save(View view)
     {
         ContentValues cv = new ContentValues();

@@ -17,7 +17,7 @@ public class DeleteStudents extends AppCompatActivity
 {
     HelperDB hlp;
     SQLiteDatabase db;
-    Cursor crsr;
+    Cursor crsr;//
     ArrayList<String> tbl = new ArrayList<>();
     ListView studentsList;
 
@@ -33,6 +33,14 @@ public class DeleteStudents extends AppCompatActivity
         studentsList=(ListView)findViewById(R.id.studentsList);
 
         read();
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+
+        finish();
     }
 
     public void read()
@@ -91,6 +99,4 @@ public class DeleteStudents extends AppCompatActivity
 
         return true;
     }
-}
-
 }
