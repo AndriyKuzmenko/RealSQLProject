@@ -1,25 +1,30 @@
 package com.example.myapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class DeleteStudents extends AppCompatActivity
+public class DeleteStudents extends AppCompatActivity implements AdapterView.OnItemClickListener
 {
     HelperDB hlp;
     SQLiteDatabase db;
-    Cursor crsr;//
+    Cursor crsr;
     ArrayList<String> tbl = new ArrayList<>();
     ListView studentsList;
+    AlertDialog.Builder adb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,6 +38,9 @@ public class DeleteStudents extends AppCompatActivity
         studentsList=(ListView)findViewById(R.id.studentsList);
 
         read();
+
+        studentsList.setOnItemClickListener(this);
+        studentsList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
     }
 
     @Override
@@ -98,5 +106,36 @@ public class DeleteStudents extends AppCompatActivity
         }
 
         return true;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+    {
+        adb=new AlertDialog.Builder(this);
+        adb.setTitle("Warning");
+        adb.setMessage("Are you sure you want to delete "+parent.getItemAtPosition(position)+"?");
+
+        adb.setNegativeButton("No", new DialogInterface.OnClickListener()
+        {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+
+                }
+            }
+        );
+
+        adb.setPositiveButton("Yes", new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+
+                }
+            }
+        );
+
+        AlertDialog ad=adb.create();
+        ad.show();
     }
 }
