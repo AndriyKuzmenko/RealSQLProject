@@ -84,7 +84,7 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
             String mother=crsr.getString(motherCol);
             int motherPhone=crsr.getInt(motherPhoneCol);
 
-            String tmp=key+",   "+name+", "+address+",   "+phone+",  "+home+",   "+father+",   "+fatherPhone+",   "+mother+",   "+motherPhone;
+            String tmp=key+".,   "+name+",   "+address+",   "+phone+",   "+home+",   "+father+",   "+fatherPhone+",   "+mother+",   "+motherPhone;
             tbl.add(tmp);
             nameTBL.add(key+". "+name);
             crsr.moveToNext();
@@ -133,13 +133,16 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
     {
         this.position=position;
 
-        String temp=(String)parent.getItemAtPosition(position);
+        String[] temp=((String)parent.getItemAtPosition(position)).split(" ");
+        String[] temp1;
         for (int i=0; i<tbl.size(); i++)
         {
-            if(!temp.split(",   ")[0].equals(tbl.get(i).split(",   ")[0]))
+            temp1=tbl.get(i).split(",   ");
+            if(!temp[0].equals(temp1[0]))
             {
                 continue;
             }
+            text.setText("Name: "+temp1[1]+"\nAddrress: "+temp1[2]+"\nPhone number: "+temp1[3]+"\nHome phone: "+temp1[4]+"\nFather: "+temp1[5]+"\nFather's phone: "+temp1[6]+"\nMother: "+temp1[7]+"\nMother's phone: "+temp1[8]);
         }
     }
 }
