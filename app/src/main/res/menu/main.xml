@@ -7,6 +7,11 @@
         android:orderInCategory="100" />
 
     <item
+        android:id="@+id/addGrades"
+        android:title="Delete Users"
+        android:orderInCategory="150" />
+
+    <item
         android:id="@+id/deleteStudents"
         android:title="Delete Users"
         android:orderInCategory="100" />

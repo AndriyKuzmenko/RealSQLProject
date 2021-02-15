@@ -156,7 +156,5 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
         db=hlp.getWritableDatabase();
         db.delete(Users.TABLE_USERS, Users.KEY_ID+"=?", new String[]{Integer.toString(id)});
         db.close();
-        tbl.remove(position);
-        adp.notifyDataSetChanged();
     }
 }
