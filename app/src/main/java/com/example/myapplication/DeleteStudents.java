@@ -1,23 +1,23 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+        import androidx.appcompat.app.AlertDialog;
+        import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentValues;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
+        import android.content.ContentValues;
+        import android.content.DialogInterface;
+        import android.content.Intent;
+        import android.database.Cursor;
+        import android.database.sqlite.SQLiteDatabase;
+        import android.os.Bundle;
+        import android.view.Menu;
+        import android.view.MenuItem;
+        import android.view.View;
+        import android.widget.AdapterView;
+        import android.widget.ArrayAdapter;
+        import android.widget.ListView;
+        import android.widget.TextView;
 
-import java.util.ArrayList;
+        import java.util.ArrayList;
 
 public class DeleteStudents extends AppCompatActivity implements AdapterView.OnItemClickListener
 {
@@ -28,8 +28,9 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
     ArrayList<String> nameTBL=new ArrayList<>();
     ListView studentsList;
     AlertDialog.Builder adb;
-    int position;
+    int position,id;
     TextView text;
+    ArrayAdapter<String> adp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -47,6 +48,7 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
         studentsList.setOnItemClickListener(this);
         studentsList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         position=-1;
+        id=-1;
         text=(TextView)findViewById(R.id.text);
     }
 
@@ -92,7 +94,7 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
         crsr.close();
         db.close();
 
-        ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, nameTBL);
+        adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, nameTBL);
         studentsList.setAdapter(adp);
     }
 
@@ -134,6 +136,7 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
         this.position=position;
 
         String[] temp=((String)parent.getItemAtPosition(position)).split(" ");
+        this.id=Integer.parseInt(temp[0].substring(0,temp[0].length()-1));
         String[] temp1;
         for (int i=0; i<tbl.size(); i++)
         {
@@ -143,6 +146,16 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
                 continue;
             }
             text.setText("Name: "+temp1[1]+"\nAddrress: "+temp1[2]+"\nPhone number: "+temp1[3]+"\nHome phone: "+temp1[4]+"\nFather: "+temp1[5]+"\nFather's phone: "+temp1[6]+"\nMother: "+temp1[7]+"\nMother's phone: "+temp1[8]);
+            break;
         }
+    }
+
+    public void delete(View view)
+    {
+        if(position==-1 || id==-1) return;
+        db.delete(Users.TABLE_USERS, Users.KEY_ID+"=?", new String[]{Integer.toString(id)});
+        db.close();
+        tbl.remove(position);
+        adp.notifyDataSetChanged();
     }
 }
