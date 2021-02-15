@@ -153,6 +153,7 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
     public void delete(View view)
     {
         if(position==-1 || id==-1) return;
+        db=hlp.getWritableDatabase();
         db.delete(Users.TABLE_USERS, Users.KEY_ID+"=?", new String[]{Integer.toString(id)});
         db.close();
         tbl.remove(position);

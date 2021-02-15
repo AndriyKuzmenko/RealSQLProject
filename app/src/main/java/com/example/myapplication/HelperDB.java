@@ -31,7 +31,7 @@ public class HelperDB extends SQLiteOpenHelper
         strCreate+=" "+Users.MOTHER_PHONE+" TEXT";
         strCreate+=");";
         db.execSQL(strCreate);
-/*
+
         strCreate="CREATE TABLE "+Grades.TABLE_GRADES;
         strCreate+=" ("+Grades.STUDENT+" INTEGER,";
         strCreate+=" "+Grades.QUARTER+" INTEGER,";
@@ -39,7 +39,7 @@ public class HelperDB extends SQLiteOpenHelper
         strCreate+=" "+Grades.GRADE+" INTEGER";
         strCreate+=");";
         db.execSQL(strCreate);
-*/
+
     }
 
     @Override
