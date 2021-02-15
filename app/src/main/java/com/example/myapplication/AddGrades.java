@@ -20,6 +20,10 @@ public class AddGrades extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_grades);
 
+        hlp = new HelperDB(this);
+        db = hlp.getWritableDatabase();
+        db.close();
+
         student=(EditText)findViewById(R.id.student);
         quarter=(EditText)findViewById(R.id.quarter);
         subject=(EditText)findViewById(R.id.subject);
@@ -30,14 +34,14 @@ public class AddGrades extends AppCompatActivity
     {
         ContentValues cv = new ContentValues();
 
-        cv.put(Grades.STUDENT, student.getText().toString());
+        cv.put(Grades.STUDENT, Integer.parseInt(student.getText().toString()));
         cv.put(Grades.QUARTER, Integer.parseInt(quarter.getText().toString()));
         cv.put(Grades.SUBJECT, subject.getText().toString());
         cv.put(Grades.GRADE, Integer.parseInt(grade.getText().toString()));
 
         db = hlp.getWritableDatabase();
 
-        db.insert(Users.TABLE_USERS, null, cv);
+        db.insert(Grades.TABLE_GRADES, null, cv);
 
         db.close();
     }
