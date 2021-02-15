@@ -94,6 +94,11 @@ public class MainActivity extends AppCompatActivity
             Intent i=new Intent(this,DeleteStudents.class);
             startActivity(i);
         }
+        else if(item.getItemId()==R.id.addGrades)
+        {
+            Intent i=new Intent(this,AddGrades.class);
+            startActivity(i);
+        }
 
         return true;
     }

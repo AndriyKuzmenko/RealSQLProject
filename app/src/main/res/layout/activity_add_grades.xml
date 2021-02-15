@@ -74,11 +74,11 @@
                     android:layout_height="10px" />
 
                 <EditText
-                    android:id="@+id/phone"
+                    android:id="@+id/subject"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="25"
-                    android:hint="Phone number"
+                    android:hint="Subject"
                     android:inputType="phone"
                     android:textSize="25sp" />
 
@@ -87,69 +87,13 @@
                     android:layout_height="10px" />
 
                 <EditText
-                    android:id="@+id/homePhone"
+                    android:id="@+id/Grade"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="25"
-                    android:hint="Home phone"
+                    android:hint="Grade"
                     android:inputType="phone"
                     android:textSize="25sp" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10px" />
-
-                <EditText
-                    android:id="@+id/father"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="25"
-                    android:hint="Father's name"
-                    android:inputType="textPersonName"
-                    android:textSize="25sp" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10px" />
-
-                <EditText
-                    android:id="@+id/fatherPhone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="25"
-                    android:hint="Father's phone number"
-                    android:inputType="phone"
-                    android:textSize="25sp" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10px" />
-
-                <EditText
-                    android:id="@+id/mother"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="25"
-                    android:hint="Mother's name"
-                    android:inputType="textPersonName"
-                    android:textSize="25sp" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10px" />
-
-                <EditText
-                    android:id="@+id/motherPhone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="25"
-                    android:hint="Mother's phone number"
-                    android:inputType="phone"
-                    android:textSize="25sp" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10px" />
 
                 <Button
                     android:layout_width="match_parent"

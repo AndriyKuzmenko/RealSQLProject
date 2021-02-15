@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/addGrades"
-        android:title="Delete Users"
+        android:title="Add Grades"
         android:orderInCategory="150" />
 
     <item
