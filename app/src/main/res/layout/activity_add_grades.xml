@@ -61,11 +61,11 @@
                     android:layout_height="10px" />
 
                 <EditText
-                    android:id="@+id/address"
+                    android:id="@+id/quarter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="25"
-                    android:hint="Address"
+                    android:hint="Quarter"
                     android:inputType="textPersonName"
                     android:textSize="25sp" />
 

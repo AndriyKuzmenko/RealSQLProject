@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity
 
         db.insert(Users.TABLE_USERS, null, cv);
 
-        //db.close();
+        db.close();
     }
 
     /**
