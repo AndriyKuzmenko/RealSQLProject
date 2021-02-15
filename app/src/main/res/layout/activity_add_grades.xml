@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:ems="25"
                     android:hint="Subject"
-                    android:inputType="phone"
+                    android:inputType="text"
                     android:textSize="25sp" />
 
                 <Space
@@ -87,12 +87,12 @@
                     android:layout_height="10px" />
 
                 <EditText
-                    android:id="@+id/Grade"
+                    android:id="@+id/grade"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="25"
                     android:hint="Grade"
-                    android:inputType="phone"
+                    android:inputType="number"
                     android:textSize="25sp" />
 
                 <Button
