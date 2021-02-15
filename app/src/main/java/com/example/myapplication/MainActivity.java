@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity
         fatherPhone=(EditText)findViewById(R.id.fatherPhone);
         mother=(EditText)findViewById(R.id.mother);
         motherPhone=(EditText)findViewById(R.id.motherPhone);
+
     }
 
     @Override
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity
 
         db.insert(Users.TABLE_USERS, null, cv);
 
-        db.close();
+        //db.close();
     }
 
     /**
