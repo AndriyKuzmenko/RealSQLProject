@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
@@ -72,8 +73,11 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
             String[] t=tbl.get(i).split(",   ");
 
             if(!(t[2].equals(subject.getText().toString())||subject.getText().toString().equals(""))) continue;
-            showTBL.add(t[2]+". "+t[3]);
+            showTBL.add(t[2]+": "+t[3]);
         }
+
+        //sort(showTBL,true);
+
         adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, showTBL);
         gradesList.setAdapter(adp);
     }
@@ -158,5 +162,23 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
     public void onNothingSelected(AdapterView<?> parent)
     {
 
+    }
+
+    public void sort(ArrayList<String> a, boolean b)
+    {
+        if(b)
+        {
+            for(int i=0;i<a.size()-2;i++)
+            {
+                a.get(i).split(" ");
+                a.get(i+1).split(" ");
+
+                //if (x1>x2)
+                //{
+                ///    Collections.swap(a,i,i+1);
+                //    i=0;
+                //}
+            }
+        }
     }
 }
