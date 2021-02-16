@@ -45,8 +45,6 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
         position=-1;
         id=-1;
         text=(TextView)findViewById(R.id.text);
-        tbl=new ArrayList<>();
-        nameTBL=new ArrayList<>();
     }
 
     /**
@@ -66,6 +64,9 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
 
     public void read()
     {
+        tbl=new ArrayList<>();
+        nameTBL=new ArrayList<>();
+
         crsr=db.query(Users.TABLE_USERS, null, null, null, null, null, null);
         int idCol=crsr.getColumnIndex(Users.KEY_ID);
         int nameCol=crsr.getColumnIndex(Users.NAME);
@@ -177,11 +178,19 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
         }
     }
 
+    /**
+     * Deletes the student that was selected
+     * @param view - the button that was pressed
+     */
+
     public void delete(View view)
     {
-        if(position==-1 || id==-1) return;
+        if(position==-1||id==-1) return;
         db=hlp.getWritableDatabase();
         db.delete(Users.TABLE_USERS, Users.KEY_ID+"=?", new String[]{Integer.toString(id)});
         db.close();
+        nameTBL.remove(position);
+        tbl.remove(position);
+        adp.notifyDataSetChanged();
     }
 }
