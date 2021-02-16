@@ -77,22 +77,64 @@
             android:layout_height="0px"
             android:layout_weight="0.5" />
 
-        <Button
+        <ToggleButton
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="1.5"
-            android:text="More than 60" />
+            android:text="ToggleButton"
+            android:textOff="Asending Order"
+            android:textOn="Decending Order" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="0.5" />
 
-        <Button
+        <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="0px"
-            android:layout_weight="1.5"
-            android:text="Less than 60" />
+            android:layout_weight="6" >
+
+            <RadioButton
+                android:id="@+id/q1"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="1"
+                android:onClick="changeQuarter"
+                android:text="Quarter 1" />
+
+            <RadioButton
+                android:id="@+id/q2"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="1"
+                android:onClick="changeQuarter"
+                android:text="Quarter 2" />
+
+            <RadioButton
+                android:id="@+id/q3"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="1"
+                android:onClick="changeQuarter"
+                android:text="Quarter 3" />
+
+            <RadioButton
+                android:id="@+id/q4"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="1"
+                android:onClick="changeQuarter"
+                android:text="Quarter 4" />
+
+            <RadioButton
+                android:id="@+id/q0"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="1"
+                android:onClick="changeQuarter"
+                android:text="All" />
+        </RadioGroup>
 
         <Space
             android:layout_width="match_parent"

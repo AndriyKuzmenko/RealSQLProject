@@ -25,6 +25,7 @@ public class ShowGrades extends AppCompatActivity
     ListView gradesList;
     int student;
     HelperDB hlp;
+    int quarter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,6 +42,7 @@ public class ShowGrades extends AppCompatActivity
         db=hlp.getWritableDatabase();
 
         read();
+        quarter=-1;
     }
 
     public void update(View view)
@@ -52,6 +54,10 @@ public class ShowGrades extends AppCompatActivity
         {
             int temp=Integer.parseInt(tbl.get(i).split(",   ")[0]);
             if(temp!=student)continue;
+
+            int q=Integer.parseInt(tbl.get(i).split(",   ")[1]);
+            if(quarter!=-1 && q!=quarter) continue;
+
             String[] t=tbl.get(i).split(",   ");
             showTBL.add(t[2]+". "+t[3]);
         }
@@ -122,5 +128,31 @@ public class ShowGrades extends AppCompatActivity
         }
 
         return true;
+    }
+
+    public void changeQuarter(View view)
+    {
+        int id=view.getId();
+
+        if(id==R.id.q1)
+        {
+            quarter=1;
+        }
+        else if(id==R.id.q2)
+        {
+            quarter=2;
+        }
+        else if(id==R.id.q3)
+        {
+            quarter=3;
+        }
+        else if(id==R.id.q4)
+        {
+            quarter=4;
+        }
+        else if(id==R.id.q0)
+        {
+            quarter=-1;
+        }
     }
 }
