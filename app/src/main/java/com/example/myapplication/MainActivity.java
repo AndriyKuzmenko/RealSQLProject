@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    /**
+     * Deletes the info about this acticity once the user exits.
+     */
     @Override
     protected void onPause()
     {
@@ -46,6 +49,11 @@ public class MainActivity extends AppCompatActivity
 
         finish();
     }
+
+    /**
+     * Saves the information that the user typed
+     * @param view - the button that was pressed
+     */
 
     public void save(View view)
     {

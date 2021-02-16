@@ -60,6 +60,11 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
         quarters.setOnItemSelectedListener(this);
     }
 
+    /**
+     * Runs when "Show Grades" button is pressed. Shows the grades of the specified student.
+     * @param view
+     */
+
     public void update(View view)
     {
         student=Integer.parseInt(studentIdET.getText().toString());
@@ -84,6 +89,10 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
         adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, showTBL);
         gradesList.setAdapter(adp);
     }
+
+    /**
+     * Reads all the grades from the SQL file and puts them in an arrayList.
+     */
 
     public void read()
     {
@@ -155,6 +164,14 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
         return true;
     }
 
+    /**
+     * Saves information about the item that was pressed in a variable.
+     * @param parent - The spinner
+     * @param view - The item that was pressed
+     * @param position - The position of the item
+     * @param id - The line of the item
+     */
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
@@ -166,11 +183,22 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
         quarter=position;
     }
 
+    /**
+     * Runs if nothing is selected
+     * @param parent - The spinner
+     */
+
     @Override
     public void onNothingSelected(AdapterView<?> parent)
     {
 
     }
+
+    /**
+     *
+     * @param a - the ArrayList
+     * @param b - a boolean variable that tells in what order to sort. true->Ascending   false->Descending
+     */
 
     public void sort(ArrayList<String> a, boolean b)
     {
@@ -204,5 +232,16 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
                 }
             }
         }
+    }
+
+    /**
+     * Deletes the info about this acticity once the user exits.
+     */
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+
+        finish();
     }
 }

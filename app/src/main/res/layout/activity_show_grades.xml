@@ -85,7 +85,7 @@
             android:layout_weight="1.5"
             android:text="ToggleButton"
             android:textOff="Asending Order"
-            android:textOn="Decending Order" />
+            android:textOn="Descending Order" />
 
         <Space
             android:layout_width="match_parent"
