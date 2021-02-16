@@ -90,51 +90,11 @@
             android:layout_height="0px"
             android:layout_weight="0.5" />
 
-        <RadioGroup
+        <Spinner
+            android:id="@+id/quarters"
             android:layout_width="match_parent"
             android:layout_height="0px"
-            android:layout_weight="6" >
-
-            <RadioButton
-                android:id="@+id/q1"
-                android:layout_width="match_parent"
-                android:layout_height="0px"
-                android:layout_weight="1"
-                android:onClick="changeQuarter"
-                android:text="Quarter 1" />
-
-            <RadioButton
-                android:id="@+id/q2"
-                android:layout_width="match_parent"
-                android:layout_height="0px"
-                android:layout_weight="1"
-                android:onClick="changeQuarter"
-                android:text="Quarter 2" />
-
-            <RadioButton
-                android:id="@+id/q3"
-                android:layout_width="match_parent"
-                android:layout_height="0px"
-                android:layout_weight="1"
-                android:onClick="changeQuarter"
-                android:text="Quarter 3" />
-
-            <RadioButton
-                android:id="@+id/q4"
-                android:layout_width="match_parent"
-                android:layout_height="0px"
-                android:layout_weight="1"
-                android:onClick="changeQuarter"
-                android:text="Quarter 4" />
-
-            <RadioButton
-                android:id="@+id/q0"
-                android:layout_width="match_parent"
-                android:layout_height="0px"
-                android:layout_weight="1"
-                android:onClick="changeQuarter"
-                android:text="All" />
-        </RadioGroup>
+            android:layout_weight="1.5" />
 
         <Space
             android:layout_width="match_parent"

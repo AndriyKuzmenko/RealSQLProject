@@ -9,13 +9,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 
-public class ShowGrades extends AppCompatActivity
+public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
     EditText studentIdET;
     Cursor crsr;
@@ -26,6 +28,8 @@ public class ShowGrades extends AppCompatActivity
     int student;
     HelperDB hlp;
     int quarter;
+    Spinner quarters;
+    String[] qList={"All Quarters","Quarter 1","Quarter 2","Quarter 3","Quarter 4"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -37,12 +41,18 @@ public class ShowGrades extends AppCompatActivity
 
         studentIdET=(EditText)findViewById(R.id.studentIdET);
         gradesList=(ListView)findViewById(R.id.gradesList);
+        quarters=(Spinner)findViewById(R.id.quarters);
 
         hlp=new HelperDB(this);
         db=hlp.getWritableDatabase();
 
         read();
         quarter=-1;
+
+        ArrayAdapter<String> adp = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,qList);
+        quarters.setAdapter(adp);
+
+        quarters.setOnItemSelectedListener(this);
     }
 
     public void update(View view)
@@ -130,29 +140,20 @@ public class ShowGrades extends AppCompatActivity
         return true;
     }
 
-    public void changeQuarter(View view)
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
-        int id=view.getId();
-
-        if(id==R.id.q1)
-        {
-            quarter=1;
-        }
-        else if(id==R.id.q2)
-        {
-            quarter=2;
-        }
-        else if(id==R.id.q3)
-        {
-            quarter=3;
-        }
-        else if(id==R.id.q4)
-        {
-            quarter=4;
-        }
-        else if(id==R.id.q0)
+        if(position==0)
         {
             quarter=-1;
+            return;
         }
+        quarter=position;
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent)
+    {
+
     }
 }
