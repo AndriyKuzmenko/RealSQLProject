@@ -146,6 +146,11 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
             Intent i=new Intent(this,MainActivity.class);
             startActivity(i);
         }
+        else if(item.getItemId()==R.id.menuCredits)
+        {
+            Intent i=new Intent(this,CreditsActivity.class);
+            startActivity(i);
+        }
 
         return true;
     }
