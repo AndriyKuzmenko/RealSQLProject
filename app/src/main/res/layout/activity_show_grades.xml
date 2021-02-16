@@ -79,6 +79,7 @@
             android:layout_weight="0.5" />
 
         <ToggleButton
+            android:id="@+id/tb"
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="1.5"

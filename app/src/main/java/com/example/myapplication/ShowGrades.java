@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,6 +32,7 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
     int quarter;
     Spinner quarters;
     String[] qList={"All Quarters","Quarter 1","Quarter 2","Quarter 3","Quarter 4"};
+    ToggleButton tb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -44,6 +46,7 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
         gradesList=(ListView)findViewById(R.id.gradesList);
         quarters=(Spinner)findViewById(R.id.quarters);
         subject=(EditText)findViewById(R.id.subject);
+        tb=(ToggleButton)findViewById(R.id.tb);
 
         hlp=new HelperDB(this);
         db=hlp.getWritableDatabase();
@@ -76,7 +79,7 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
             showTBL.add(t[2]+": "+t[3]);
         }
 
-        //sort(showTBL,true);
+        sort(showTBL,!tb.isChecked());
 
         adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, showTBL);
         gradesList.setAdapter(adp);
@@ -168,16 +171,32 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
     {
         if(b)
         {
-            for(int i=0;i<a.size()-2;i++)
+            for(int i=0;i<a.size()-1;i++)
             {
-                a.get(i).split(" ");
-                a.get(i+1).split(" ");
-
-                //if (x1>x2)
-                //{
-                ///    Collections.swap(a,i,i+1);
-                //    i=0;
-                //}
+                for(int j=0;j<a.size()-1;j++)
+                {
+                    int x1 = Integer.parseInt(a.get(j).split(": ")[1]);
+                    int x2 = Integer.parseInt(a.get(j+1).split(": ")[1]);
+                    if (x1>x2)
+                    {
+                        Collections.swap(a,j,j+1);
+                    }
+                }
+            }
+        }
+        else
+        {
+            for(int i=0;i<a.size()-1;i++)
+            {
+                for(int j=0;j<a.size()-1;j++)
+                {
+                    int x1 = Integer.parseInt(a.get(j).split(": ")[1]);
+                    int x2 = Integer.parseInt(a.get(j+1).split(": ")[1]);
+                    if (x1<x2)
+                    {
+                        Collections.swap(a,j,j+1);
+                    }
+                }
             }
         }
     }
