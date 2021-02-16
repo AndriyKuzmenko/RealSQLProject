@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
-    EditText studentIdET;
+    EditText studentIdET, subject;
     Cursor crsr;
     ArrayList<String> tbl, showTBL;
     SQLiteDatabase db;
@@ -42,6 +42,7 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
         studentIdET=(EditText)findViewById(R.id.studentIdET);
         gradesList=(ListView)findViewById(R.id.gradesList);
         quarters=(Spinner)findViewById(R.id.quarters);
+        subject=(EditText)findViewById(R.id.subject);
 
         hlp=new HelperDB(this);
         db=hlp.getWritableDatabase();
@@ -69,6 +70,8 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
             if(quarter!=-1 && q!=quarter) continue;
 
             String[] t=tbl.get(i).split(",   ");
+
+            if(!(t[2].equals(subject.getText().toString())||subject.getText().toString().equals(""))) continue;
             showTBL.add(t[2]+". "+t[3]);
         }
         adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, showTBL);
