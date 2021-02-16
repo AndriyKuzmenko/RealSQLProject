@@ -49,6 +49,9 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
         nameTBL=new ArrayList<>();
     }
 
+    /**
+     * Deletes the info about this acticity once the user exits.
+     */
     @Override
     protected void onPause()
     {
@@ -56,6 +59,10 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
 
         finish();
     }
+
+    /**
+     * Reads all the data about all the students from SQL.
+     */
 
     public void read()
     {
@@ -141,6 +148,14 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
 
         return true;
     }
+
+    /**
+     *
+     * @param parent - The ListView
+     * @param view - The item that was pressed
+     * @param position - position of the item that was pressed
+     * @param id - the line of the item
+     */
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)

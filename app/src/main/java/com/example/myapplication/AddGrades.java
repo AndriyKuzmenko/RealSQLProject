@@ -33,6 +33,11 @@ public class AddGrades extends AppCompatActivity
         grade=(EditText)findViewById(R.id.grade);
     }
 
+    /**
+     * Saves the grade.
+     * @param view - the button that was pressed
+     */
+
     public void save(View view)
     {
         ContentValues cv = new ContentValues();
@@ -93,5 +98,16 @@ public class AddGrades extends AppCompatActivity
         }
 
         return true;
+    }
+
+    /**
+     * Deletes the info about this acticity once the user exits.
+     */
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+
+        finish();
     }
 }
