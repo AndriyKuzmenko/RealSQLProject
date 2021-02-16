@@ -19,10 +19,12 @@ public class ShowGrades extends AppCompatActivity
 {
     EditText studentIdET;
     Cursor crsr;
-    ArrayList<String> tbl;
+    ArrayList<String> tbl, showTBL;
     SQLiteDatabase db;
     ArrayAdapter<String> adp;
     ListView gradesList;
+    int student;
+    HelperDB hlp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,12 +35,28 @@ public class ShowGrades extends AppCompatActivity
         tbl=new ArrayList<>();
 
         studentIdET=(EditText)findViewById(R.id.studentIdET);
+        gradesList=(ListView)findViewById(R.id.gradesList);
+
+        hlp=new HelperDB(this);
+        db=hlp.getWritableDatabase();
+
+        read();
     }
 
     public void update(View view)
     {
-        int student=Integer.parseInt(studentIdET.getText().toString());
+        student=Integer.parseInt(studentIdET.getText().toString());
+        showTBL=new ArrayList<>();
 
+        for(int i=0; i<tbl.size(); i++)
+        {
+            int temp=Integer.parseInt(tbl.get(i).split(",   ")[0]);
+            if(temp!=student)continue;
+            String[] t=tbl.get(i).split(",   ");
+            showTBL.add(t[2]+". "+t[3]);
+        }
+        adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, showTBL);
+        gradesList.setAdapter(adp);
     }
 
     public void read()
@@ -48,18 +66,14 @@ public class ShowGrades extends AppCompatActivity
         int quarterCol=crsr.getColumnIndex(Grades.QUARTER);
         int subjectCol=crsr.getColumnIndex(Grades.SUBJECT);
         int gradeCol=crsr.getColumnIndex(Grades.GRADE);
-        int fatherCol=crsr.getColumnIndex(Users.FATHER);
-        int fatherPhoneCol=crsr.getColumnIndex(Users.FATHER_PHONE);
-        int motherCol=crsr.getColumnIndex(Users.MOTHER);
-        int motherPhoneCol=crsr.getColumnIndex(Users.MOTHER_PHONE);
 
         crsr.moveToFirst();
         while (!crsr.isAfterLast())
         {
             int student = crsr.getInt(studentCol);
             int quarter=crsr.getInt(quarterCol);
-            int subject=crsr.getInt(subjectCol);
-            String grade=crsr.getString(gradeCol);
+            String subject=crsr.getString(subjectCol);
+            int grade=crsr.getInt(gradeCol);
 
             String tmp=student+",   "+quarter+",   "+subject+",   "+grade;
             tbl.add(tmp);
@@ -67,9 +81,6 @@ public class ShowGrades extends AppCompatActivity
         }
         crsr.close();
         db.close();
-
-        adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, tbl);
-        gradesList.setAdapter(adp);
     }
 
     /**
