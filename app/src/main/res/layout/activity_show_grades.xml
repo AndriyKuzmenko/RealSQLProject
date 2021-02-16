@@ -26,7 +26,7 @@
             android:id="@+id/gradesList"
             android:layout_width="match_parent"
             android:layout_height="0px"
-            android:layout_weight="7.5" />
+            android:layout_weight="9.5" />
 
         <Space
             android:layout_width="match_parent"
@@ -51,6 +51,7 @@
         android:layout_weight="1" />
 
         <EditText
+            android:id="@+id/studentIdET"
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="1.5"
@@ -92,6 +93,18 @@
             android:layout_height="0px"
             android:layout_weight="1.5"
             android:text="Less than 60" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="0.5" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1.5"
+            android:onClick="update"
+            android:text="Update List" />
 
         <Space
             android:layout_width="match_parent"

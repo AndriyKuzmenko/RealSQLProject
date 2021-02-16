@@ -1,10 +1,6 @@
 package com.example.myapplication;
 
-        import androidx.appcompat.app.AlertDialog;
         import androidx.appcompat.app.AppCompatActivity;
-
-        import android.content.ContentValues;
-        import android.content.DialogInterface;
         import android.content.Intent;
         import android.database.Cursor;
         import android.database.sqlite.SQLiteDatabase;
@@ -24,10 +20,9 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
     HelperDB hlp;
     SQLiteDatabase db;
     Cursor crsr;
-    ArrayList<String> tbl = new ArrayList<>();
-    ArrayList<String> nameTBL=new ArrayList<>();
+    ArrayList<String> tbl;
+    ArrayList<String> nameTBL;
     ListView studentsList;
-    AlertDialog.Builder adb;
     int position,id;
     TextView text;
     ArrayAdapter<String> adp;
@@ -50,6 +45,8 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
         position=-1;
         id=-1;
         text=(TextView)findViewById(R.id.text);
+        tbl=new ArrayList<>();
+        nameTBL=new ArrayList<>();
     }
 
     @Override

@@ -12,7 +12,7 @@ public class AddGrades extends AppCompatActivity
 {
     SQLiteDatabase db;
     HelperDB hlp;
-    EditText student,address,quarter,subject,grade;
+    EditText student,quarter,subject,grade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
