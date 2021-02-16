@@ -17,6 +17,11 @@
         android:orderInCategory="100" />
 
     <item
+        android:id="@+id/showGrades"
+        android:title="Show Grades"
+        android:orderInCategory="150" />
+
+    <item
         android:id="@+id/menuCredits"
         android:title="Credits Activity"
         android:orderInCategory="200" />

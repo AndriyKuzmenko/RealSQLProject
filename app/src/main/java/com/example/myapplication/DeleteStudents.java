@@ -128,6 +128,11 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
             Intent i=new Intent(this,AddGrades.class);
             startActivity(i);
         }
+        else if(item.getItemId()==R.id.showGrades)
+        {
+            Intent i=new Intent(this,ShowGrades.class);
+            startActivity(i);
+        }
 
         return true;
     }
