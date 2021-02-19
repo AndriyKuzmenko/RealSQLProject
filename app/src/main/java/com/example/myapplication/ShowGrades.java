@@ -23,7 +23,7 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
 {
     EditText studentIdET, subject;
     Cursor crsr;
-    ArrayList<String> tbl, showTBL;
+    ArrayList<String> tbl, showTBL, nameTBL;
     SQLiteDatabase db;
     ArrayAdapter<String> adp;
     ListView gradesList;
@@ -41,6 +41,7 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
         setContentView(R.layout.activity_show_grades);
 
         tbl=new ArrayList<>();
+        nameTBL=new ArrayList<>();
 
         studentIdET=(EditText)findViewById(R.id.studentIdET);
         gradesList=(ListView)findViewById(R.id.gradesList);
@@ -67,7 +68,7 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
 
     public void update(View view)
     {
-        student=Integer.parseInt(studentIdET.getText().toString());
+        student=findStudent(studentIdET.getText().toString());
         showTBL=new ArrayList<>();
 
         for(int i=0; i<tbl.size(); i++)
@@ -112,6 +113,22 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
 
             String tmp=student+",   "+quarter+",   "+subject+",   "+grade;
             tbl.add(tmp);
+            crsr.moveToNext();
+        }
+        crsr.close();
+
+        crsr=db.query(Users.TABLE_USERS, null, null, null, null, null, null);
+        int idCol=crsr.getColumnIndex(Users.KEY_ID);
+        int nameCol=crsr.getColumnIndex(Users.NAME);
+
+        crsr.moveToFirst();
+        while (!crsr.isAfterLast())
+        {
+            int key=crsr.getInt(idCol);
+            String name = crsr.getString(nameCol);
+
+            String temp=key+",   "+name;
+            nameTBL.add(temp);
             crsr.moveToNext();
         }
         crsr.close();
@@ -243,5 +260,18 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
         super.onPause();
 
         finish();
+    }
+
+    public int findStudent(String name)
+    {
+        for(int i=0; i<tbl.size(); i++)
+        {
+            String[] temp=nameTBL.get(i).split(",   ");
+            if(!temp[1].equals(name)) continue;
+            int id=Integer.parseInt(temp[0]);
+            return id;
+        }
+
+        return -1;
     }
 }
