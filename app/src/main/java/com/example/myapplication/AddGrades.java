@@ -50,7 +50,7 @@ public class AddGrades extends AppCompatActivity
     {
         ContentValues cv = new ContentValues();
 
-        cv.put(Grades.STUDENT, Integer.parseInt(student.getText().toString()));
+        cv.put(Grades.STUDENT, findStudent(student.getText().toString()));
         cv.put(Grades.QUARTER, Integer.parseInt(quarter.getText().toString()));
         cv.put(Grades.SUBJECT, subject.getText().toString());
         cv.put(Grades.GRADE, Integer.parseInt(grade.getText().toString()));
@@ -145,6 +145,7 @@ public class AddGrades extends AppCompatActivity
 
     public void read()
     {
+        db=hlp.getWritableDatabase();
         crsr=db.query(Users.TABLE_USERS, null, null, null, null, null, null);
         int idCol=crsr.getColumnIndex(Users.KEY_ID);
         int nameCol=crsr.getColumnIndex(Users.NAME);
