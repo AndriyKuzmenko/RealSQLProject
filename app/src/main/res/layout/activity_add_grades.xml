@@ -52,8 +52,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="25"
-                    android:hint="id (find in delete screen)"
-                    android:inputType="number"
+                    android:hint="Student's name"
+                    android:inputType="textPersonName"
                     android:textSize="25sp" />
 
                 <Space
