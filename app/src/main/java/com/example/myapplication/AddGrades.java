@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -50,7 +51,15 @@ public class AddGrades extends AppCompatActivity
     {
         ContentValues cv = new ContentValues();
 
-        cv.put(Grades.STUDENT, findStudent(student.getText().toString()));
+        int id=findStudent(student.getText().toString());
+        if(id==-1)
+        {
+            Toast toast=Toast.makeText(getApplicationContext(),"The student that you entered doesn't exist",Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
+
+        cv.put(Grades.STUDENT, id);
         cv.put(Grades.QUARTER, Integer.parseInt(quarter.getText().toString()));
         cv.put(Grades.SUBJECT, subject.getText().toString());
         cv.put(Grades.GRADE, Integer.parseInt(grade.getText().toString()));
