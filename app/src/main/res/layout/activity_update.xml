@@ -38,9 +38,23 @@
                     android:fontFamily="serif"
                     android:foregroundGravity="center"
                     android:gravity="center"
-                    android:text="Input Screen"
+                    android:text="Update Screen"
                     android:textColor="#FF0000"
                     android:textSize="45sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15px" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="serif"
+                    android:gravity="center"
+                    android:text="Type in the student's name, then press FIND STUDENT. This button will fill in all the information about this student. Update the fields you want to update and press save."
+                    android:textColor="#190530"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <Space
@@ -59,6 +73,15 @@
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="10px" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Find student" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15px" />
 
                 <EditText
                     android:id="@+id/addressUpdate"
