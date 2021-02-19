@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -18,7 +19,7 @@ public class UpdateActivity extends AppCompatActivity
     Cursor crsr;
     ArrayList<String> nameTBL;
     EditText nameUpdate, addressUpdate, phoneUpdate, homePhoneUpdate, fatherUpdate, fatherPhoneUpdate, motherUpdate, motherPhoneUpdate;
-    int student;
+    int student,id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,7 +42,7 @@ public class UpdateActivity extends AppCompatActivity
         motherPhoneUpdate=(EditText)findViewById(R.id.motherPhoneUpdate);
 
         read();
-        student=-1;
+        id=student=-1;
     }
 
     /**
@@ -97,8 +98,8 @@ public class UpdateActivity extends AppCompatActivity
         {
             String[] temp=nameTBL.get(i).split(",   ");
             if(!temp[1].equals(name)) continue;
-            int id=Integer.parseInt(temp[0]);
-            return id;
+            id=Integer.parseInt(temp[0]);
+            return i;
         }
 
         return -1;
@@ -129,5 +130,22 @@ public class UpdateActivity extends AppCompatActivity
         fatherPhoneUpdate.setText(temp[6]);
         motherUpdate.setText(temp[7]);
         motherPhoneUpdate.setText(temp[8]);
+    }
+
+    public void save(View view)
+    {
+        ContentValues cv = new ContentValues();
+        String olddata=nameTBL.get(student-1);
+        db = hlp.getWritableDatabase();
+        cv.put(Users.ADDRESS,addressUpdate.getText().toString());
+        cv.put(Users.PHONE, Integer.parseInt(phoneUpdate.getText().toString()));
+        cv.put(Users.HOME_PHONE, Integer.parseInt(homePhoneUpdate.getText().toString()));
+        cv.put(Users.FATHER, fatherUpdate.getText().toString());
+        cv.put(Users.FATHER_PHONE, Integer.parseInt(fatherPhoneUpdate.getText().toString()));
+        cv.put(Users.MOTHER, motherUpdate.getText().toString());
+        cv.put(Users.MOTHER_PHONE, Integer.parseInt(motherPhoneUpdate.getText().toString()));
+
+        db.update(Users.TABLE_USERS,cv,Users.NAME+"=?", new String[]{olddata});
+        db.close();
     }
 }
