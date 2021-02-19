@@ -30,7 +30,6 @@ public class UpdateActivity extends AppCompatActivity
         hlp = new HelperDB(this);
         db = hlp.getWritableDatabase();
         db.close();
-        nameTBL=new ArrayList<>();
 
         nameUpdate=(EditText)findViewById(R.id.nameUpdate);
         addressUpdate=(EditText)findViewById(R.id.addressUpdate);
@@ -41,7 +40,6 @@ public class UpdateActivity extends AppCompatActivity
         motherUpdate=(EditText)findViewById(R.id.motherUpdate);
         motherPhoneUpdate=(EditText)findViewById(R.id.motherPhoneUpdate);
 
-        read();
         id=student=-1;
     }
 
@@ -51,6 +49,7 @@ public class UpdateActivity extends AppCompatActivity
 
     public void read()
     {
+        nameTBL=new ArrayList<>();
         db=hlp.getWritableDatabase();
         crsr=db.query(Users.TABLE_USERS, null, null, null, null, null, null);
 
@@ -113,6 +112,7 @@ public class UpdateActivity extends AppCompatActivity
 
     public void findStudentOnCick(View view)
     {
+        read();
         student=findStudent(nameUpdate.getText().toString());
 
         if(student==-1)
@@ -142,7 +142,7 @@ public class UpdateActivity extends AppCompatActivity
         }
 
         ContentValues cv = new ContentValues();
-        String olddata=nameTBL.get(student-1);
+        String olddata=nameTBL.get(student);
         db = hlp.getWritableDatabase();
         cv.put(Users.ADDRESS,addressUpdate.getText().toString());
         cv.put(Users.PHONE, Integer.parseInt(phoneUpdate.getText().toString()));
@@ -152,7 +152,7 @@ public class UpdateActivity extends AppCompatActivity
         cv.put(Users.MOTHER, motherUpdate.getText().toString());
         cv.put(Users.MOTHER_PHONE, Integer.parseInt(motherPhoneUpdate.getText().toString()));
 
-        db.update(Users.TABLE_USERS,cv,Users.NAME+"=?", new String[]{olddata});
+        db.update(Users.TABLE_USERS,cv,"_id="+id,null);
         db.close();
     }
 }
