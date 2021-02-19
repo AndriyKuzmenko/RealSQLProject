@@ -100,7 +100,7 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
     }
 
     /**
-     * Reads all the grades from the SQL file and puts them in an arrayList.
+     * Reads all the grades and the names of the students from the SQL file and puts them in an arrayList.
      */
 
     public void read()
