@@ -3,9 +3,12 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -132,6 +135,13 @@ public class UpdateActivity extends AppCompatActivity
         motherPhoneUpdate.setText(temp[8]);
     }
 
+    /**
+     * This method runs when the save button is pressed. It saves all the information in the
+     * sql file.
+     *
+     * @param view - the button that is pressed
+     */
+
     public void save(View view)
     {
         if(student==-1)
@@ -154,5 +164,67 @@ public class UpdateActivity extends AppCompatActivity
 
         db.update(Users.TABLE_USERS,cv,"_id="+id,null);
         db.close();
+    }
+
+    /**
+     * @param menu  - the menu
+     * @return      - shows the main menu
+     */
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.main, menu);
+
+        return true;
+    }
+
+    /**
+     *
+     * @param item - the item that was selected
+     * @return     - Starts the activity that the user selected
+     */
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        if(item.getItemId()==R.id.deleteStudents)
+        {
+            Intent i=new Intent(this,DeleteStudents.class);
+            startActivity(i);
+        }
+        else if(item.getItemId()==R.id.menuMain)
+        {
+            Intent i=new Intent(this,MainActivity.class);
+            startActivity(i);
+        }
+        else if(item.getItemId()==R.id.showGrades)
+        {
+            Intent i=new Intent(this,ShowGrades.class);
+            startActivity(i);
+        }
+        else if(item.getItemId()==R.id.menuCredits)
+        {
+            Intent i=new Intent(this,CreditsActivity.class);
+            startActivity(i);
+        }
+        else if(item.getItemId()==R.id.addGrades)
+        {
+            Intent i=new Intent(this,AddGrades.class);
+            startActivity(i);
+        }
+
+        return true;
+    }
+
+    /**
+     * Deletes the info about this acticity once the user exits.
+     */
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+
+        finish();
     }
 }
