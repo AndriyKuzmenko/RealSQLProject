@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity
         }
         else if(item.getItemId()==R.id.updateMenu)
         {
-            Intent i=new Intent(this,CreditsActivity.class);
+            Intent i=new Intent(this,UpdateActivity.class);
             startActivity(i);
         }
 
