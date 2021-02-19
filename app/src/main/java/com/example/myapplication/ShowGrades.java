@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.util.ArrayList;
@@ -70,6 +71,13 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
     {
         student=findStudent(studentIdET.getText().toString());
         showTBL=new ArrayList<>();
+
+        if(student==-1)
+        {
+            Toast toast=Toast.makeText(getApplicationContext(),"The student that you entered doesn't exist",Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
 
         for(int i=0; i<tbl.size(); i++)
         {
@@ -264,7 +272,7 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
 
     public int findStudent(String name)
     {
-        for(int i=0; i<tbl.size(); i++)
+        for(int i=0; i<nameTBL.size(); i++)
         {
             String[] temp=nameTBL.get(i).split(",   ");
             if(!temp[1].equals(name)) continue;
