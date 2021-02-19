@@ -12,6 +12,7 @@ package com.example.myapplication;
         import android.widget.ArrayAdapter;
         import android.widget.ListView;
         import android.widget.TextView;
+        import android.widget.Toast;
 
         import java.util.ArrayList;
 
@@ -97,10 +98,29 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
             crsr.moveToNext();
         }
         crsr.close();
-        db.close();
 
         adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, nameTBL);
         studentsList.setAdapter(adp);
+
+        crsr=db.query(Grades.TABLE_GRADES, null, null, null, null, null, null);
+        int studentCol=crsr.getColumnIndex(Grades.STUDENT);
+        int quarterCol=crsr.getColumnIndex(Grades.QUARTER);
+        int subjectCol=crsr.getColumnIndex(Grades.SUBJECT);
+        int gradeCol=crsr.getColumnIndex(Grades.GRADE);
+
+        crsr.moveToFirst();
+        while (!crsr.isAfterLast())
+        {
+            int student = crsr.getInt(studentCol);
+            int quarter=crsr.getInt(quarterCol);
+            String subject=crsr.getString(subjectCol);
+            int grade=crsr.getInt(gradeCol);
+
+            String tmp=student+",   "+quarter+",   "+subject+",   "+grade;
+            tbl.add(tmp);
+            crsr.moveToNext();
+        }
+        crsr.close();
     }
 
 
@@ -186,11 +206,20 @@ public class DeleteStudents extends AppCompatActivity implements AdapterView.OnI
     public void delete(View view)
     {
         if(position==-1||id==-1) return;
+
+        if(text.getText().toString().equals(""))
+        {
+            Toast toast=Toast.makeText(getApplicationContext(),"Please press on the student you want to delete",Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
         db=hlp.getWritableDatabase();
         db.delete(Users.TABLE_USERS, Users.KEY_ID+"=?", new String[]{Integer.toString(id)});
+        db.delete(Grades.TABLE_GRADES, Grades.STUDENT+"=?", new String[]{Integer.toString(id)});
         db.close();
         nameTBL.remove(position);
         tbl.remove(position);
         adp.notifyDataSetChanged();
+        text.setText("");
     }
 }
