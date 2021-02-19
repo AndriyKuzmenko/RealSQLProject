@@ -270,6 +270,13 @@ public class ShowGrades extends AppCompatActivity implements AdapterView.OnItemS
         finish();
     }
 
+    /**
+     * This method gets the name of a student and returns his id.
+     *
+     * @param name - the name of the student
+     * @return - the student's id
+     */
+
     public int findStudent(String name)
     {
         for(int i=0; i<nameTBL.size(); i++)
