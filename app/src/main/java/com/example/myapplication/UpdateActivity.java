@@ -36,6 +36,8 @@ public class UpdateActivity extends AppCompatActivity
         fatherPhoneUpdate=(EditText)findViewById(R.id.fatherPhoneUpdate);
         motherUpdate=(EditText)findViewById(R.id.motherUpdate);
         motherPhoneUpdate=(EditText)findViewById(R.id.motherPhoneUpdate);
+
+        read();
     }
 
     /**
