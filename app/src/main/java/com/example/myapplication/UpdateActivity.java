@@ -122,7 +122,7 @@ public class UpdateActivity extends AppCompatActivity
             return;
         }
 
-        String[] temp=nameTBL.get(student-1).split(",   ");
+        String[] temp=nameTBL.get(student).split(",   ");
         addressUpdate.setText(temp[2]);
         phoneUpdate.setText(temp[3]);
         homePhoneUpdate.setText(temp[4]);
@@ -134,6 +134,13 @@ public class UpdateActivity extends AppCompatActivity
 
     public void save(View view)
     {
+        if(student==-1)
+        {
+            Toast toast=Toast.makeText(getApplicationContext(),"The student that you entered doesn't exist",Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
+
         ContentValues cv = new ContentValues();
         String olddata=nameTBL.get(student-1);
         db = hlp.getWritableDatabase();
